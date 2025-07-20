@@ -45,3 +45,4 @@ c6d7eb9f-2f1e-4cd1-bf6e-d2abcb21b7a0,Ольга Кузнецова,+7 981 321-65
 3e7d9f6c-8a4d-4c5e-7f2b-1d9a8f0e6c3b,Эвелина Цветкова,+7 981 334-45-56,evelina.tsvetkova@example.com,Друг
 5f6d8e4c-9a5d-4b3e-7f2c-2d1a9f0e6c4b,Михаил Артемьев,+7 951 445-56-67,mikhail.artemev@example.com,Работа
 436df3d0-ac21-41ec-83ae-546c2b7e3cca,Test2,1234567890,,
+36b5ae25-6d95-4a16-8a85-dcbb68a543b5,11,1231231231,,

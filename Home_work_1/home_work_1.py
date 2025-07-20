@@ -3,6 +3,7 @@ from tkinter import ttk
 import csv
 import uuid
 
+
 # Объявление глобальных переменных для полей ввода и метки статуса
 global entry_name, entry_phone, entry_email, entry_comment, status_label, selected_contact_id
 
@@ -45,21 +46,20 @@ def destroy_widget():
         widget.destroy()
 
 
-def treeview():
-
-    # Создание таблицы
-    columns = ("ID", "Имя", "Телефон", "Email", "Комментарий")
-    tree = ttk.Treeview(window, columns=columns, show="headings")
-    tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-
-    for col in columns:
-        tree.heading(col, text=col)
-        tree.column(col, width=150)
-
-        # Чтение данных из файла
+def treeview(refresh=False, tree=None):
+    if not refresh and tree is None:
+        columns = ("ID", "Имя", "Телефон", "Email", "Комментарий")
+        tree = ttk.Treeview(window, columns=columns, show="headings")
+        tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        for col in columns:
+            tree.heading(col, text=col)
+            tree.column(col, width=150)
+        return tree
+    elif refresh and tree is not None:
+        # Очистка старых данных
+        for row in tree.get_children():
+            tree.delete(row)
         contacts = load_contacts()
-
-        # Добавление данных в таблицу
         for contact in contacts:
             tree.insert(
                 "",
@@ -72,7 +72,7 @@ def treeview():
                     contact["Комментарий"],
                 ),
             )
-    return tree
+        return tree
 
 
 # Функция отображения начального экрана
@@ -147,9 +147,8 @@ def show_start_screen():
 # Функция отображения всех контактов
 def get_all_contacts():
     destroy_widget()
-    treeview()
-
-    # Кнопка назад
+    tree = treeview()
+    treeview(refresh=True, tree=tree)
     back_button = tk.Button(
         window,
         text="Назад",
