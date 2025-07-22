@@ -10,14 +10,14 @@ global entry_name, entry_phone, entry_email, entry_comment, status_label, select
 
 # Функция загрузки контактов из файла CSV
 def load_contacts():
-    with open("Контакты.txt", "r", encoding="utf-8") as file:
+    with open("./Контакты.txt", "r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         content = list(reader)
         return content
 
 
 # Функция записи контактов в файл CSV
-def write_contacts(contacts, filename="Контакты.txt"):
+def write_contacts(contacts, filename="./Контакты.txt"):
     fieldnames = ["ID", "Имя", "Телефон", "Email", "Комментарий"]
     with open(filename, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -362,6 +362,7 @@ def edit_contact():
 
     destroy_widget()
     tree = treeview()
+    treeview(refresh=True, tree=tree)
 
     def refresh_table():
         contacts = load_contacts()
@@ -485,6 +486,7 @@ def edit_contact():
             contact for contact in contacts if contact["ID"] != contact_id_delete
         ]
         write_contacts(contacts)
+        refresh_table()
 
     # Событие выделения строки
     tree.bind("<<TreeviewSelect>>", on_select)
