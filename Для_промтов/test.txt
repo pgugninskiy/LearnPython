@@ -1,0 +1,321 @@
+# tests/test_storage.py
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from model.contact_storage import ContactStorage
+import os
+
+
+def test_add_contact_success():
+    # Создаём временное имя файла, чтобы не портить настоящий справочник
+    test_file = "test_contacts.txt"
+
+    # Создаём объект хранилища с этим файлом
+    storage = ContactStorage(filename=test_file)
+
+    # Добавляем контакт
+    contact = storage.add_contact(
+        name="Анна",
+        phone="79001234567",
+        email="anna@example.com",
+        comment="Друг"
+    )
+
+    # Проверяем, что у контакта есть ID
+    assert "ID" in contact
+
+    # Проверяем, что имя сохранилось правильно
+    assert contact["Имя"] == "Анна"
+    assert contact["Телефон"] == "79001234567"
+
+    # Теперь загружаем все контакты из файла
+    loaded = storage.load_contacts()
+
+    # Должен быть ровно 1 контакт
+    assert len(loaded) == 1
+    assert loaded[0]["Имя"] == "Анна"
+
+    # Удаляем тестовый файл после теста
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_validation_empty_name_or_phone():
+    storage = ContactStorage()
+
+    # Проверяем, что пустой телефон — не валиден
+    assert storage.is_valid_phone("") == False
+    assert storage.is_valid_phone("123") == False  # слишком коротко
+    assert storage.is_valid_phone("79001234567") == True  # OK
+
+    # Проверяем email
+    assert storage.is_valid_email("") == False
+    assert storage.is_valid_email("bad-email") == False
+    assert storage.is_valid_email("ok@test.com") == True
+
+
+def test_add_empty_contact():
+    test_file = "test_empty.txt"
+    storage = ContactStorage(filename=test_file)
+
+    contact = storage.add_contact("", "", "", "")
+
+    assert contact["Имя"] == ""
+    assert contact["Телефон"] == ""
+
+    loaded = storage.load_contacts()
+    assert len(loaded) == 1
+
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+def test_search_by_name():
+    # Имя временного файла
+    test_file = "test_search.txt"
+    storage = ContactStorage(filename=test_file)
+
+    # Добавим пару контактов вручную (через add_contact)
+    storage.add_contact("Анна Петрова", "79001112233", "anna@test.ru", "Друг")
+    storage.add_contact("Борис Сидоров", "79104445566", "boris@work.com", "Коллега")
+
+    # Ищем по имени "Анна"
+    results = storage.search_contacts("Анна")
+    assert len(results) == 1
+    assert results[0]["Имя"] == "Анна Петрова"
+
+    # Удаляем тестовый файл
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_search_by_phone():
+    test_file = "test_search_phone.txt"
+    storage = ContactStorage(filename=test_file)
+
+    storage.add_contact("Мария", "79201234567", "maria@mail.ru", "")
+    storage.add_contact("Иван", "79309876543", "ivan@box.com", "Боксёр")
+
+    # Ищем по части номера телефона
+    results = storage.search_contacts("920123")
+    assert len(results) == 1
+    assert results[0]["Имя"] == "Мария"
+
+    # Удаляем файл
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_general_search():
+    test_file = "test_general.txt"
+    storage = ContactStorage(filename=test_file)
+
+    storage.add_contact("Ольга", "79501112233", "olga@company.org", "HR-менеджер")
+
+    # Ищем по части email
+    results = storage.search_contacts("company")
+    assert len(results) == 1
+    assert "HR-менеджер" in results[0]["Комментарий"]
+
+    # Ищем по части комментария
+    results2 = storage.search_contacts("менеджер")
+    assert len(results2) == 1
+    assert results2[0]["Имя"] == "Ольга"
+
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_search_nonexistent_contact():
+    test_file = "test_not_found.txt"
+    storage = ContactStorage(filename=test_file)
+
+    # Добавим один контакт
+    storage.add_contact("Сергей", "79998887766", "sergey@example.com", "")
+
+    # Ищем то, чего нет
+    results = storage.search_contacts("НесуществующийИмя")
+    assert len(results) == 0  # Ничего не найдено
+
+    # Ищем несуществующий номер
+    results2 = storage.search_contacts("0000000000")
+    assert len(results2) == 0
+
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_update_contact_success():
+    test_file = "test_edit.txt"
+    storage = ContactStorage(filename=test_file)
+
+    # Сначала добавим контакт
+    contact = storage.add_contact("Старое Имя", "79001112233", "old@test.com", "Старый коммент")
+    contact_id = contact["ID"]
+
+    # Теперь обновим его
+    updated = {
+        "ID": contact_id,
+        "Имя": "Новое Имя",
+        "Телефон": "79104445566",
+        "Email": "new@test.com",
+        "Комментарий": "Новый коммент"
+    }
+
+    success = storage.update_contact(updated)
+    assert success == True
+
+    # Проверим, что изменения сохранились
+    loaded = storage.load_contacts()
+    assert len(loaded) == 1
+    assert loaded[0]["Имя"] == "Новое Имя"
+    assert loaded[0]["Телефон"] == "79104445566"
+
+    # Удаляем файл
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_update_nonexistent_contact():
+    test_file = "test_edit_not_found.txt"
+    storage = ContactStorage(filename=test_file)
+
+    # Добавим один контакт
+    contact = storage.add_contact("Анна", "79001234567", "", "")
+
+    # Попробуем обновить контакт с несуществующим ID
+    fake_updated = {
+        "ID": "несуществующий-id",
+        "Имя": "Борис",
+        "Телефон": "79998887766",
+        "Email": "",
+        "Комментарий": ""
+    }
+
+    success = storage.update_contact(fake_updated)
+    assert success == False  # Не должно обновиться
+
+    # Убедимся, что оригинал не изменился
+    loaded = storage.load_contacts()
+    assert len(loaded) == 1
+    assert loaded[0]["Имя"] == "Анна"
+
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+def test_validation_during_edit():
+    storage = ContactStorage()
+
+    # Проверка телефона
+    assert storage.is_valid_phone("79001234567") == True   # 11 цифр
+    assert storage.is_valid_phone("9001234567") == True    # 10 цифр — OK
+    assert storage.is_valid_phone("123") == False          # слишком коротко
+    assert storage.is_valid_phone("abc") == False          # не цифры
+
+    # Проверка email
+    assert storage.is_valid_email("user@domain.com") == True
+    assert storage.is_valid_email("bad-email") == False
+    assert storage.is_valid_email("") == False             # пустой — не валиден
+
+    # Пустые поля — не разрешены (это проверяется в AppWindowModal, но мы можем имитировать)
+    name = ""
+    phone = "79001234567"
+    assert not (name and phone)  # если имя пустое — ошибка
+
+def test_partial_update():
+    test_file = "test_partial.txt"
+    storage = ContactStorage(filename=test_file)
+
+    contact = storage.add_contact("Иван", "79201112233", "ivan@test.ru", "Старый")
+    contact_id = contact["ID"]
+
+    # Обновляем только комментарий
+    updated = {
+        "ID": contact_id,
+        "Имя": "Иван",               # то же самое
+        "Телефон": "79201112233",    # то же самое
+        "Email": "ivan@test.ru",     # то же самое
+        "Комментарий": "Новый коммент"
+    }
+
+    success = storage.update_contact(updated)
+    assert success == True
+
+    loaded = storage.load_contacts()
+    assert loaded[0]["Комментарий"] == "Новый коммент"
+    assert loaded[0]["Имя"] == "Иван"  # остальное не изменилось
+
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+def test_delete_contact_success():
+    test_file = "test_delete_ok.txt"
+    storage = ContactStorage(filename=test_file)
+
+    # Добавим контакт
+    contact = storage.add_contact("Анна", "79001234567", "", "")
+    contact_id = contact["ID"]
+
+    # Удалим его
+    result = storage.delete_contact(contact_id)
+    assert result == True  # Удаление прошло успешно
+
+    # Проверим, что контакт исчез
+    contacts = storage.load_contacts()
+    assert len(contacts) == 0
+
+    # Удалим временный файл
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+
+def test_delete_contact_with_invalid_id():
+    test_file = "test_delete_bad_id.txt"
+    storage = ContactStorage(filename=test_file)
+
+    # Добавим один контакт
+    storage.add_contact("Борис", "79101112233", "", "")
+
+    # Попробуем удалить по несуществующему ID
+    fake_id = "несуществующий-id-123"
+    result = storage.delete_contact(fake_id)
+    assert result == False  # Удаление не удалось
+
+    # Убедимся, что контакт остался
+    contacts = storage.load_contacts()
+    assert len(contacts) == 1
+    assert contacts[0]["Имя"] == "Борис"
+
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+def test_file_creation_and_persistence():
+    test_file = "test_persistence.txt"
+
+    # Убедимся, что файла нет
+    if os.path.exists(test_file):
+        os.remove(test_file)
+
+    # Создаём хранилище — файл ещё не создан
+    storage = ContactStorage(filename=test_file)
+
+    # Загружаем — должно быть пусто
+    contacts = storage.load_contacts()
+    assert contacts == []  # Нет ошибки, просто пустой список
+
+    # Добавляем контакт → файл должен создаться
+    storage.add_contact("Иван", "79209998877", "ivan@test.com", "Тест")
+
+    # Проверяем, что файл появился
+    assert os.path.exists(test_file)
+
+    # Теперь создаём новое хранилище (имитируем перезапуск программы)
+    storage2 = ContactStorage(filename=test_file)
+    loaded = storage2.load_contacts()
+
+    assert len(loaded) == 1
+    assert loaded[0]["Имя"] == "Иван"
+    assert loaded[0]["Email"] == "ivan@test.com"
+
+    # Удаляем файл после теста
+    if os.path.exists(test_file):
+        os.remove(test_file)

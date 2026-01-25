@@ -1,0 +1,49 @@
+ID,Имя,Телефон,Email,Комментарий
+9f35b6ba-712c-4af8-a6b0-3cfd2aefbdf2,Александр Иванов,89011234567,alex.ivanov@example.com,Работа
+0d1f4c14-3e7c-4d3d-8c61-9cf8bdf5a6a3,Мария Петрова,89219876543,maria.petrova@example.com,Друг
+5a82b0c0-6f5c-4a2e-ba1d-f0fa7d1c4b7e,Дмитрий Смирнов,89112345678,dmitry.smirnov@example.com,
+c6d7eb9f-2f1e-4cd1-bf6e-d2abcb21b7a0,Ольга Кузнецова,89813216540,olga.kuznetsova@example.com,Семья
+1b3e5f7d-9c6f-4a1d-8d4a-5ec4fbd9dbaf,Андрей Попов,89514567890,andrey.popov@example.com,Работа
+7a9d4e1f-5d3a-4b2e-8d5f-1cde9f6a3b2c,Елена Васильева,89998765432,elena.vasilyeva@example.com,Друг
+2f1e9d4a-8d4f-4e3b-9f5a-2acdeb9f6c8d,Николай Николаев,89043219876,nikolay.nikolaev@example.com,Работа
+3d6c8e1a-7d2f-4c5a-9b4e-0f9edcba3d2f,Irina Орлова,8123123123123,tatiana.orlova@example.com,Семья
+8e1d6f7c-4a2e-4d3f-9c5b-7d2a1f9e4d3c,Сергей Лебедев,89117654321,sergey.lebedev@example.com,Работа
+6c8d3f1e-5e7d-4a2b-8f4c-3d9a7e5f6c0d,Наталья Соколова,89818765432,natalya.sokolova@example.com,Друг
+5f7e2d1c-6a4d-4e3f-9b2c-8d5a1f9e4d3b,Ирина Фёдорова,89999876543,irina.fedorova@example.com,Семья
+7d2f8e6c-3a5d-4c1f-9e7b-4d0c9f3a2e1d,Алексей Новиков,89044321098,alexey.novikov@example.com,Работа
+9e6d4f3c-5c2e-4a1d-8f4b-7e5d0f9a3c2a,Анна Горбунова,89218761234,anna.gorbunova@example.com,Друг
+1f8e5d4c-6b3a-4e2f-9d5c-3a7d0e9f6b1a,Павел Яковлев,89112134567,pavel.yakovlev@example.com,Работа
+8d4e2f7c-9a1d-4c3b-8e5f-6d7c0f9a2e1d,Юлия Андреева123,89817658901,yulia.andreeva@example.com,Семья
+3c9f6e1d-7a2d-4b5f-8e3c-4d9a7f1e6c0b,Максим Королёв,89811231231237,maksim.korolev@example.com,Работа
+5d8e3f6c-9b4d-4a2e-7f1c-2c8d9f3a6e0b,Роман Зайцев,8123123123123,roman.zaitsev@example.com,Работа
+7f6e9d3c-8a5d-4b2f-9e4c-1d7a0f9e6b3c,Людмила Сергеевна,81231231231231,lyudmila.sergeeva@example.com,Семья123
+2d7f4e6c-3a1d-4c5b-8e2f-9d3a7f0e6c4b,Георгий Алексеев,81231231231,georgiy.alekseev@example.com,Работа
+1e8d6f4c-7b3a-4d2e-9f5c-6a1d9f7e0c2b,Екатерина Егорова,89816677889,katya.egorova@example.com,Друг
+4c9d7e2f-8a5c-4b3d-9f4e-7d6a1f8e0c5b,Борис Дмитриев,89517788990,boris.dmitriev@example.com,Работа
+3f6e8d9c-5a4d-4c1f-8b7e-2d9a7f3e6c0b,Алиса Романова,89998899001,alisa.romanova@example.com,Семья
+5e8d3f6c-7b4a-4d2e-9c1f-8d7a9f0e6b3c,Валентина Одинцова,879211122334,valentina.odintsova@example.com,Друг
+8c9d6e3f-4a2d-4b5f-7e1c-9d4a7f2e6c0b,Фёдор Лапин,81234567890,fedor.lapin@example.com,Работаasd
+7d6e9f4c-3a5d-4c2e-8f3b-1c8d7f9e6a0b,Милана Карпова,879813344556,milana.karpova@example.com,Семья
+2e7d4f6c-9a3d-4b5e-8f2c-6d1a9f7e0c4b,Артём Власов,89514455667,artem.vlasov@example.com,Работа
+9d8e5f3c-6a4d-4c1e-7f2b-3c9d7f0e6a1d,Зинаида Никитина,89995566778,zinaida.nikitina@example.com,Друг
+1f6d8e4c-7a5d-4b3f-9e2c-4d7a9f1e6c0b,Ярослав Гусева,89046677889,yaroslav.gusev@example.com,Работа
+5c7e9d6f-8a4d-4b2e-7f3c-1d8a9f0e6b4c,Виктория Ширяева,89217788990,viktoria.shiryaeva@example.com,Семья
+3d8e6f4c-9a5d-4c2e-7f1b-2c7d9f3e6a0b,Игорь Антонов,89118899001,igor.antonov@example.com,Работа1
+6e9d7f4c-8a3d-4b5e-9f2c-7d1a9f0e6c4b,Светлана Макарова,89819911223,svetlana.makarova@example.com,Друг
+4d7e2f9c-6a5d-4c3e-8f4b-9d1a7f6e0c2b,Вадим Белоусов,89511122334,vadim.belousov@example.com,Работа
+7f8d6e4c-9a5d-4c2e-8f3b-1d9a7f0e6c4b,Анастасия Комарова,89992233445,anastasia.komarova@example.com,Семья
+2c9d7e4f-8a6d-4b5e-9f3c-6d1a9f7e0c2b,Арсен Миронов,89043344556,arsen.mironov@example.com,Работа
+5e7d8f6c-4a3d-4c5b-9e2f-8d1a9f3e6c0b,Оксана Крылова,89214455667,oksana.krylova@example.com,Друг
+3c8e7f6d-9a4d-4b5e-7f2c-1d9a7f0e6c4b,Евгений Логинов,89115566778,evgeny.loginov@example.com,Работа
+6f7d9e4c-8a5d-4c2e-7f3b-2d1a9f8e0c6b,Кристина Савельева,89816677889,kristina.savelyeva@example.com,Семья
+1d8e7f6c-9a5d-4b3e-8f2c-4c1a9f0e6d7b,Антон Родионов,89517788990,anton.rodyonov@example.com,Работа
+7e9d6f4c-8a5d-4c3e-9f2b-3d1a9f7e0c6b,Надежда Сазонова,89998899001,nadezhda.sazonova@example.com,Друг
+2f6d8e4c-7a5d-4b3f-9e2c-1d8a9f0e6c7b,Виктор Тихомиров,89049911223,victor.tikhomirov@example.com,Работа
+4c7e9d6f-8a5d-4b3e-7f2c-6d1a9f0e6c8b,Алёна Герасимова,89211122334,alena.gerasimova@example.com,Семья
+9d8e6f4c-7a5d-4c3e-8f2b-3c1a9f7e0d6b,Руслан Дорофеев,89112233445,ruslan.dorofeev@example.com,Работа
+3e7d9f6c-8a4d-4c5e-7f2b-1d9a8f0e6c3b,Эвелина Цветкова,89813344556,evelina.tsvetkova@example.com,Друг
+5f6d8e4c-9a5d-4b3e-7f2c-2d1a9f0e6c4b,Михаил Артемьев,89514455667,mikhail.artemev@example.com,Работа
+23a17408-1fb3-45f0-825d-5a7cd7631399,123,8123123123123,,
+578df87c-ec25-4cae-9402-2360b1715c7f,Тест,8123123123123,,
+1017f2b8-2403-4798-bb79-d72033280fed,asd,123123123123,,
+cb896720-3f1e-45be-990a-d939967ada86,asdrft,1234567890,,
