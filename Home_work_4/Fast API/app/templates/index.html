@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1 class="display-5 fw-bold">Добро пожаловать! 👋</h1>
+    <p class="col-md-8 fs-4">Это ваше первое веб-приложение на FastAPI + Bootstrap.</p>
+    <a href="{{ url_for('about') }}" class="btn btn-primary btn-lg">Узнать больше</a>
+</div>
+{% endblock %}
