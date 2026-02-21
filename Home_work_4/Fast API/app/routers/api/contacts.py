@@ -1,15 +1,18 @@
+from datetime import datetime
+from typing import List, Optional
+
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, Field
-from typing import List, Optional
-from datetime import datetime
 
 router = APIRouter()
 
 
 # ==================== Модели данных ====================
 
+
 class ContactBase(BaseModel):
     """Базовая модель контакта"""
+
     name: str = Field(..., min_length=1, max_length=100, description="Имя контакта")
     phone: str = Field(..., min_length=10, max_length=20, description="Номер телефона")
     email: Optional[str] = Field(None, description="Email адрес")
@@ -18,11 +21,13 @@ class ContactBase(BaseModel):
 
 class ContactCreate(ContactBase):
     """Модель для создания контакта"""
+
     pass
 
 
 class Contact(ContactBase):
     """Модель контакта с ID и датой создания"""
+
     id: int
     created_at: datetime
 
@@ -37,6 +42,7 @@ next_id = 1
 
 
 # ==================== API Endpoints ====================
+
 
 @router.get("/", response_model=List[Contact], tags=["Контакты"])
 async def get_all_contacts():
@@ -59,12 +65,14 @@ async def get_contact(contact_id: int):
     if not contact:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Контакт с ID {contact_id} не найден"
+            detail=f"Контакт с ID {contact_id} не найден",
         )
     return contact
 
 
-@router.post("/", response_model=Contact, status_code=status.HTTP_201_CREATED, tags=["Контакты"])
+@router.post(
+    "/", response_model=Contact, status_code=status.HTTP_201_CREATED, tags=["Контакты"]
+)
 async def create_contact(contact_data: ContactCreate):
     """
     ➕ Создать новый контакт
@@ -79,7 +87,7 @@ async def create_contact(contact_data: ContactCreate):
         phone=contact_data.phone,
         email=contact_data.email,
         notes=contact_data.notes,
-        created_at=datetime.now()
+        created_at=datetime.now(),
     )
 
     contacts_db.append(new_contact)

@@ -1,7 +1,7 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
-from app.routers import pages, api
+
+from app.routers import api, pages
 
 app = FastAPI(title="My First Web App")
 
@@ -12,6 +12,7 @@ templates = Jinja2Templates(directory="app/templates")
 # Подключение роутеров
 app.include_router(pages.router)  # HTML-страницы
 app.include_router(api.router, prefix="/api")  # API с префиксом /api
+
 
 @app.get("/health")
 async def health():
