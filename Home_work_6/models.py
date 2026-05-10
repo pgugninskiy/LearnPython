@@ -43,8 +43,8 @@ class User(Base):
 
     # Для удобного вывода в консоль
     def __repr__(self):
-        return f"<User(username='{self.username}', email='{self.email}')>"
-
+        return f"<User(id={self.id}, username='{self.username}')>"
+    
 
 # === МОДЕЛЬ: ПОСТ ===
 class Post(Base):
