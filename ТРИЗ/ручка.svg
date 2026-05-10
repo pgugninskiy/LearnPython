@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700">
+  <defs>
+    <style>
+      .title { font: bold 24px Arial, sans-serif; fill: #2c3e50; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #7f8c8d; }
+      .stage-title { font: bold 12px Arial, sans-serif; fill: #2c3e50; }
+      .stage-text { font: 11px Arial, sans-serif; fill: #34495e; }
+      .defect-text { font: 10px Arial, sans-serif; fill: #c0392b; }
+      .solution-text { font: 10px Arial, sans-serif; fill: #27ae60; }
+      .box-red { fill: #ffeaea; stroke: #e74c3c; stroke-width: 1.5; }
+      .box-green { fill: #e8f5e9; stroke: #27ae60; stroke-width: 1.5; }
+      .arrow { stroke: #27ae60; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .timeline { stroke: #34495e; stroke-width: 3; fill: none; }
+      .node { fill: #3498db; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="700" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="700" y="35" text-anchor="middle" class="title">Системная горизонталь: эволюция ручки</text>
+  <text x="700" y="55" text-anchor="middle" class="subtitle">Последовательное развитие функциональных систем</text>
+  
+  <!-- Timeline -->
+  <line x1="50" y1="320" x2="1350" y2="320" class="timeline"/>
+  <polygon points="1350,320 1340,315 1340,325" fill="#34495e"/>
+  
+  <!-- Stage 1 -->
+  <g transform="translate(80, 80)">
+    <text x="60" y="0" text-anchor="middle" class="stage-title">Stage 1</text>
+    <!-- Icon -->
+    <line x1="60" y1="20" x2="40" y2="120" stroke="#5d4e37" stroke-width="4" stroke-linecap="round"/>
+    <line x1="40" y1="120" x2="35" y2="130" stroke="#5d4e37" stroke-width="3"/>
+    
+    <text x="60" y="150" text-anchor="middle" class="stage-title">Тростниковое</text>
+    <text x="60" y="165" text-anchor="middle" class="stage-title">писало</text>
+    <text x="60" y="182" text-anchor="middle" class="stage-text">Твёрдый стержень +</text>
+    <text x="60" y="195" text-anchor="middle" class="stage-text">обмакивание</text>
+    
+    <!-- Defect box -->
+    <rect x="0" y="210" width="120" height="50" class="box-red" rx="3"/>
+    <text x="60" y="228" text-anchor="middle" class="defect-text">Недостаток:</text>
+    <text x="60" y="242" text-anchor="middle" class="defect-text">грубый штрих,</text>
+    <text x="60" y="254" text-anchor="middle" class="defect-text">хрупкость</text>
+    
+    <!-- Solution -->
+    <line x1="125" y1="235" x2="155" y2="235" class="arrow"/>
+    <text x="60" y="280" text-anchor="middle" class="solution-text">→ Гибкость пера,</text>
+    <text x="60" y="293" text-anchor="middle" class="solution-text">контроль нажима</text>
+    
+    <!-- Timeline node -->
+    <circle cx="60" cy="240" r="6" class="node"/>
+  </g>
+  
+  <!-- Stage 2 -->
+  <g transform="translate(260, 80)">
+    <text x="60" y="0" text-anchor="middle" class="stage-title">Stage 2</text>
+    <!-- Icon -->
+    <path d="M 60 20 Q 50 60 45 100 Q 43 110 40 120" stroke="#8B7355" stroke-width="2" fill="none"/>
+    <path d="M 60 20 Q 70 50 75 80" stroke="#8B7355" stroke-width="1.5" fill="none"/>
+    <path d="M 55 40 Q 60 45 65 40" stroke="#8B7355" stroke-width="1" fill="none"/>
+    <line x1="42" y1="115" x2="38" y2="125" stroke="#2c3e50" stroke-width="2"/>
+    
+    <text x="60" y="150" text-anchor="middle" class="stage-title">Гусиное перо</text>
+    <text x="60" y="182" text-anchor="middle" class="stage-text">Расщеплённый кончик</text>
+    <text x="60" y="195" text-anchor="middle" class="stage-text">+ чернильница</text>
+    
+    <!-- Defect box -->
+    <rect x="0" y="210" width="120" height="60" class="box-red" rx="3"/>
+    <text x="60" y="228" text-anchor="middle" class="defect-text">Недостаток:</text>
+    <text x="60" y="242" text-anchor="middle" class="defect-text">износ, заточка,</text>
+    <text x="60" y="254" text-anchor="middle" class="defect-text">нестабильность</text>
+    
+    <!-- Solution -->
+    <line x1="125" y1="240" x2="155" y2="240" class="arrow"/>
+    <text x="60" y="285" text-anchor="middle" class="solution-text">→ Долговечность,</text>
+    <text x="60" y="298" text-anchor="middle" class="solution-text">стандартизация</text>
+    
+    <!-- Timeline node -->
+    <circle cx="60" cy="240" r="6" class="node"/>
+  </g>
+  
+  <!-- Stage 3 -->
+  <g transform="translate(440, 80)">
+    <text x="60" y="0" text-anchor="middle" class="stage-title">Stage 3</text>
+    <!-- Icon -->
+    <rect x="35" y="70" width="50" width="25" fill="#5d4e37" rx="3"/>
+    <path d="M 60 95 L 60 110 L 50 120" stroke="#2c3e50" stroke-width="2" fill="none"/>
+    <path d="M 60 110 L 70 120" stroke="#2c3e50" stroke-width="2" fill="none"/>
+    
+    <text x="60" y="150" text-anchor="middle" class="stage-title">Металлическое</text>
+    <text x="60" y="165" text-anchor="middle" class="stage-title">перо + держатель</text>
+    <text x="60" y="182" text-anchor="middle" class="stage-text">Штампованное перо</text>
+    <text x="60" y="195" text-anchor="middle" class="stage-text">+ сменный держатель</text>
+    
+    <!-- Defect box -->
+    <rect x="0" y="210" width="120" height="60" class="box-red" rx="3"/>
+    <text x="60" y="228" text-anchor="middle" class="defect-text">Недостаток:</text>
+    <text x="60" y="242" text-anchor="middle" class="defect-text">макание, протечки,</text>
+    <text x="60" y="254" text-anchor="middle" class="defect-text">низкая автономность</text>
+    
+    <!-- Solution -->
+    <line x1="125" y1="240" x2="155" y2="240" class="arrow"/>
+    <text x="60" y="285" text-anchor="middle" class="solution-text">→ Встроенная</text>
+    <text x="60" y="298" text-anchor="middle" class="solution-text">подача чернил</text>
+    
+    <!-- Timeline node -->
+    <circle cx="60" cy="240" r="6" class="node"/>
+  </g>
+  
+  <!-- Stage 4 -->
+  <g transform="translate(620, 80)">
+    <text x="60" y="0" text-anchor="middle" class="stage-title">Stage 4</text>
+    <!-- Icon -->
+    <rect x="30" y="60" width="60" height="20" fill="#2c3e50" rx="3"/>
+    <path d="M 60 80 L 60 100 L 48 115" stroke="#2c3e50" stroke-width="2.5" fill="none"/>
+    <line x1="40" y1="70" x2="40" y2="75" stroke="#3498db" stroke-width="3"/>
+    
+    <text x="60" y="150" text-anchor="middle" class="stage-title">Перьевая ручка</text>
+    <text x="60" y="182" text-anchor="middle" class="stage-text">Резервуар +</text>
+    <text x="60" y="195" text-anchor="middle" class="stage-text">капиллярный питатель</text>
+    
+    <!-- Defect box -->
+    <rect x="0" y="210" width="120" height="60" class="box-red" rx="3"/>
+    <text x="60" y="228" text-anchor="middle" class="defect-text">Недостаток:</text>
+    <text x="60" y="242" text-anchor="middle" class="defect-text">протечки,</text>
+    <text x="60" y="254" text-anchor="middle" class="defect-text">чувствительность</text>
+    
+    <!-- Solution -->
+    <line x1="125" y1="240" x2="155" y2="240" class="arrow"/>
+    <text x="60" y="285" text-anchor="middle" class="solution-text">→ Шарик + вязкие</text>
+    <text x="60" y="298" text-anchor="middle" class="solution-text">чернила = надёжность</text>
+    
+    <!-- Timeline node -->
+    <circle cx="60" cy="240" r="6" class="node"/>
+  </g>
+  
+  <!-- Stage 5 -->
+  <g transform="translate(800, 80)">
+    <text x="60" y="0" text-anchor="middle" class="stage-title">Stage 5</text>
+    <!-- Icon -->
+    <rect x="30" y="50" width="60" height="15" fill="#34495e" rx="2"/>
+    <rect x="35" y="65" width="50" height="40" fill="#ecf0f1" stroke="#34495e" stroke-width="1" rx="2"/>
+    <circle cx="60" cy="110" r="4" fill="#2c3e50"/>
+    <line x1="60" y1="114" x2="60" y2="120" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="55" cy="95" r="8" stroke="#e74c3c" stroke-width="1" fill="none"/>
+    
+    <text x="60" y="150" text-anchor="middle" class="stage-title">Шариковая</text>
+    <text x="60" y="165" text-anchor="middle" class="stage-title">ручка (Биро)</text>
+    <text x="60" y="182" text-anchor="middle" class="stage-text">Вращающийся шарик</text>
+    <text x="60" y="195" text-anchor="middle" class="stage-text">+ вязкие чернила</text>
+    
+    <!-- Defect box -->
+    <rect x="0" y="210" width="120" height="60" class="box-red" rx="3"/>
+    <text x="60" y="228" text-anchor="middle" class="defect-text">Недостаток:</text>
+    <text x="60" y="242" text-anchor="middle" class="defect-text">тугое письмо,</text>
+    <text x="60" y="254" text-anchor="middle" class="defect-text">пропуски, блёклость</text>
+    
+    <!-- Solution -->
+    <line x1="125" y1="240" x2="155" y2="240" class="arrow"/>
+    <text x="60" y="285" text-anchor="middle" class="solution-text">→ Низкое трение,</text>
+    <text x="60" y="298" text-anchor="middle" class="solution-text">яркий штрих</text>
+    
+    <!-- Timeline node -->
+    <circle cx="60" cy="240" r="6" class="node"/>
+  </g>
+  
+  <!-- Stage 6 -->
+  <g transform="translate(980, 80)">
+    <text x="60" y="0" text-anchor="middle" class="stage-title">Stage 6</text>
+    <!-- Icon -->
+    <rect x="30" y="50" width="60" height="15" fill="#34495e" rx="2"/>
+    <rect x="35" y="65" width="50" height="45" fill="#3498db" stroke="#2980b9" stroke-width="1" rx="2" opacity="0.6"/>
+    <rect x="38" y="110" width="44" height="8" fill="#2c3e50" rx="1"/>
+    <line x1="60" y1="118" x2="60" y2="125" stroke="#2c3e50" stroke-width="2"/>
+    
+    <text x="60" y="150" text-anchor="middle" class="stage-title">Гелевая/</text>
+    <text x="60" y="165" text-anchor="middle" class="stage-title">капиллярная ручка</text>
+    <text x="60" y="182" text-anchor="middle" class="stage-text">Водные чернила</text>
+    <text x="60" y="195" text-anchor="middle" class="stage-text">+ микропористый</text>
+    <text x="60" y="207" text-anchor="middle" class="stage-text">наконечник</text>
+    
+    <!-- Defect box -->
+    <rect x="0" y="220" width="120" height="70" class="box-red" rx="3"/>
+    <text x="60" y="238" text-anchor="middle" class="defect-text">Недостаток:</text>
+    <text x="60" y="252" text-anchor="middle" class="defect-text">зависимость от</text>
+    <text x="60" y="264" text-anchor="middle" class="defect-text">бумаги, усталость</text>
+    <text x="60" y="276" text-anchor="middle" class="defect-text">кисти, разрыв с цифрой</text>
+    
+    <!-- Future -->
+    <line x1="125" y1="255" x2="165" y2="255" class="arrow" stroke-dasharray="5,3"/>
+    <rect x="170" y="235" width="90" height="40" fill="#e8f4f8" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="215" y="252" text-anchor="middle" class="stage-title" font-size="11">БУДУЩЕЕ: ?</text>
+    <text x="215" y="267" text-anchor="middle" class="solution-text" font-size="9">eco · digital · ergo</text>
+    
+    <!-- Timeline node -->
+    <circle cx="60" cy="255" r="6" class="node"/>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="450" y="640" width="20" height="12" class="box-red"/>
+  <text x="475" y="650" class="stage-text" font-size="10">red = недостаток</text>
+  
+  <rect x="620" y="640" width="20" height="12" class="box-green"/>
+  <text x="645" y="650" class="stage-text" font-size="10">green = решение следующего этапа</text>
+</svg>
