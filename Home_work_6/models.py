@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine  # асин
 from sqlalchemy import Column, Integer, String, Text, ForeignKey  # типы полей
 from sqlalchemy.orm import relationship, sessionmaker  # связи и фабрика сессий
 
-# === ПОДКЛЮЧЕНИЕ К БД ===
+# === ПОДКЛЮЧЕНИЕ К БД === 
 # Адрес базы: используем SQLite + асинхронный драйвер
 DATABASE_URL = "sqlite+aiosqlite:///./homework.db"
 
