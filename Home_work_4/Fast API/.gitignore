@@ -1,0 +1,72 @@
+# ==================== Python ====================
+# Байт-код и кэш
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Виртуальные окружения
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Распространённые дистрибутивы
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ==================== IDE ====================
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.settings/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# ==================== OS ====================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ==================== Логи и данные ====================
+# Логи
+*.log
+logs/
+
+# База данных SQLite (если используете)
+*.db
+*.sqlite
+*.sqlite3
+
+# Секреты и окружение
+.env
+*.key
+*.pem
+
+# ==================== Тесты и покрытие ====================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ==================== Документация ====================
+docs/_build/
+*.pdf
+*.tmp
