@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список записей</title>
+    <style>body{font-family:sans-serif;max-width:800px;margin:2rem auto;padding:0 1rem;}</style>
+</head>
+<body>
+    <h1>📋 Все записи</h1>
+    <a href="/add">➕ Добавить новую запись</a>
+    <hr>
+    {% if records %}
+    <ul>
+        {% for r in records %}
+        <li>
+            <strong>{{ r.title }}</strong> 
+            {% if r.description %} - {{ r.description }}{% endif %}
+            <br><small style="color:#666;">{{ r.created_at.strftime('%Y-%m-%d %H:%M:%S UTC') }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Записей пока нет.</p>
+    {% endif %}
+</body>
+</html>
