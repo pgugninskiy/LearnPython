@@ -9,12 +9,16 @@
     <h1>📋 Все записи</h1>
     <a href="/add">➕ Добавить новую запись</a>
     <hr>
-    {% if records %}
+    
+    
+    {% if notes %}
     <ul>
-        {% for r in records %}
+        
+        {% for r in notes %}
         <li>
-            <strong>{{ r.title }}</strong> 
-            {% if r.description %} - {{ r.description }}{% endif %}
+            <strong>{{ r.title }}</strong>
+            
+            {% if r.content %} - {{ r.content }}{% endif %}
             <br><small style="color:#666;">{{ r.created_at.strftime('%Y-%m-%d %H:%M:%S UTC') }}</small>
         </li>
         {% endfor %}
