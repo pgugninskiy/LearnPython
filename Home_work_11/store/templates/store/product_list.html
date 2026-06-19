@@ -1,0 +1,39 @@
+{% extends 'store/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <!-- Фильтр по категориям -->
+    <div class="categories">
+        <a href="{% url 'store:product_list' %}" class="{% if not current_category %}active{% endif %}">Все</a>
+        {% for cat in categories %}
+            <a href="{% url 'store:category_detail' cat.id %}" 
+               class="{% if current_category and current_category.id == cat.id %}active{% endif %}">
+                {{ cat.name }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- Список товаров -->
+    {% if products %}
+        <div class="products">
+            {% for product in products %}
+                <article class="product-card">
+                    <h3>{{ product.name }}</h3>
+                    <div class="category">📁 {{ product.category.name }}</div>
+                    <p class="description">{{ product.description|truncatewords:20 }}</p>
+                    <div class="price">{{ product.price }} ₽</div>
+                    <small style="color: #95a5a6;">
+                        Добавлен: {{ product.created_at|date:"d.m.Y H:i" }}
+                    </small>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty">
+            <p>😕 Товары не найдены</p>
+            <p><a href="/admin/store/product/add/">➕ Добавить товар в админке</a></p>
+        </div>
+    {% endif %}
+{% endblock %}
