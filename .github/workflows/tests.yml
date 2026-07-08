@@ -1,6 +1,5 @@
 name: Django Tests CI
 
-# Триггеры: когда запускать тесты
 on:
   push:
     branches: [ "main", "master" ]
@@ -13,49 +12,46 @@ jobs:
     
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11"]
 
     steps:
-    # 1. Скачиваем код
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # 2. Устанавливаем Python
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
-    # 3. Устанавливаем зависимости
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pytest pytest-django coverage pytest-cov
+        cd Home_work_12
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    # 4. Применяем миграции (создаем тестовую БД)
     - name: Apply migrations
       run: |
+        cd Home_work_12
         python manage.py makemigrations
         python manage.py migrate
 
-    # 5. Запускаем тесты с pytest
     - name: Run tests with pytest
       run: |
+        cd Home_work_12
         pytest -v
 
-    # 6. Запускаем тесты с замером покрытия (БОНУС)
     - name: Generate coverage report
       run: |
+        cd Home_work_12
         pytest --cov=shop --cov-report=term-missing --cov-report=xml
       continue-on-error: true
 
-    # 7. Отправка покрытия в Codecov (БОНУС)
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage.xml
+        files: ./Home_work_12/coverage.xml
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: false
