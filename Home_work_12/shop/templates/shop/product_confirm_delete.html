@@ -1,0 +1,16 @@
+<!-- shop/templates/shop/product_confirm_delete.html -->
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <div class="card p-4" style="max-width: 500px;">
+        <h2 class="text-danger">Удаление товара</h2>
+        <p>Вы уверены, что хотите удалить товар <strong>"{{ product.name }}"</strong>?</p>
+        <p class="text-muted">Это действие нельзя отменить.</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Да, удалить</button>
+            <a href="{% url 'product_detail' product.pk %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+{% endblock %}

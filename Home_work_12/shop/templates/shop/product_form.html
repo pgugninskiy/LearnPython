@@ -1,0 +1,33 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <h2>Заполните данные о товаре</h2>
+    <div class="card p-4" style="max-width: 500px;">
+        <form method="post">
+            {% csrf_token %} <!-- ОБЯЗАТЕЛЬНО: защита от хакеров, без этого форма не сработает -->
+            
+            <!-- Вывод общих ошибок (не привязанных к конкретному полю) -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <!-- Проходим по каждому полю формы -->
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }} <!-- Django сам нарисует поле ввода (input, textarea) -->
+                    
+                    <!-- ВАЖНО ДЛЯ ДЗ: Вывод ошибок конкретного поля (например, "Цена должна быть > 0") -->
+                    {% if field.errors %}
+                        <div class="text-danger small">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %} <!-- Говорим: используй каркас из base.html -->
+
+{% block content %}
+    <h2>Наши товары</h2>
+    <div class="row">
+        {% for product in products %} <!-- Цикл: для каждого товара в списке -->
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="text-primary fw-bold">{{ product.price }} ₽</p>
+                        <a href="{% url 'product_detail' product.pk %}" class="btn btn-sm btn-primary">Подробнее</a>
+                        <a href="{% url 'product_update' product.pk %}" class="btn btn-sm btn-warning">Изменить</a>
+                        <a href="{% url 'product_delete' product.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
