@@ -1,0 +1,63 @@
+# Используем готовый Docker-образ с Python 3.12
+image: python:3.12
+
+# Переменные окружения
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  DJANGO_SETTINGS_MODULE: config.settings
+
+# Кэшируем pip, чтобы pipeline работал быстрее
+cache:
+  paths:
+    - .cache/pip/
+
+# Этапы pipeline (выполняются по порядку)
+stages:
+  - install
+  - test
+  - coverage
+
+# Этап 1: Установка зависимостей
+install_dependencies:
+  stage: install
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: always          # АВТОМАТИЧЕСКИ в main
+    - if: $CI_MERGE_REQUEST_ID
+      when: manual          # ВРУЧНУЮ в MR
+  script:
+    - cd Home_work_13
+    - python -m pip install --upgrade pip
+    - pip install pytest pytest-django coverage pytest-cov
+    - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+# Этап 2: Запуск тестов
+run_tests:
+  stage: test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: always
+    - if: $CI_MERGE_REQUEST_ID
+      when: manual
+  script:
+    - cd Home_work_13
+    - python manage.py migrate --run-syncdb
+    - pytest -v
+  dependencies:
+    - install_dependencies
+
+# Этап 3: Замер покрытия кода (БОНУСНАЯ ЧАСТЬ)
+coverage_report:
+  stage: coverage
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: always
+    - if: $CI_MERGE_REQUEST_ID
+      when: manual
+  script:
+    - cd Home_work_13
+    - pytest --cov=shop --cov-report=term-missing --cov-report=xml
+  # GitLab сам найдёт эту строку в выводе и покажет процент покрытия
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  dependencies:
+    - install_dependencies
