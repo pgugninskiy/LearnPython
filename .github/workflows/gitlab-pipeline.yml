@@ -1,0 +1,61 @@
+name: GitLab-style Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      
+      - name: Install dependencies
+        run: |
+          cd Home_work_13
+          pip install -r requirements.txt
+          pip install pytest pytest-django coverage pytest-cov
+
+  test:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      
+      - name: Run tests
+        run: |
+          cd Home_work_13
+          pip install -r requirements.txt
+          pip install pytest pytest-django
+          python manage.py migrate --run-syncdb
+          pytest -v
+
+  coverage:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      
+      - name: Generate coverage
+        run: |
+          cd Home_work_13
+          pip install -r requirements.txt
+          pip install pytest pytest-django pytest-cov
+          pytest --cov=shop --cov-report=term-missing
